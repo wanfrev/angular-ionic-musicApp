@@ -1,0 +1,106 @@
+body {
+  background: #1e1e2f;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.register-card {
+  background: #1e1e2f;
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 10px 10px 20px #14141f, -10px -10px 20px #28283f;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.register-card h1 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.register-card p {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.custom-item {
+  --background: #1e1e2f;
+  --border-color: transparent;
+  --color: #fff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: inset 5px 5px 10px #14141f, inset -5px -5px 10px #28283f;
+}
+
+.custom-item ion-label {
+  color: #aaa;
+}
+
+.custom-item ion-input {
+  color: #fff;
+}
+
+.btn-register {
+  width: 100%;
+  background: #1e1e2f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-register:hover {
+  box-shadow: inset 5px 5px 10px #14141f, inset -5px -5px 10px #28283f;
+}
+
+.nav-link {
+  margin-top: 20px;
+}
+
+.nav-link p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.custom-button {
+  background: #1e1e2f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f;
+}
+
+.custom-button:hover {
+  box-shadow: inset 5px 5px 10px #14141f, inset -5px -5px 10px #28283f;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

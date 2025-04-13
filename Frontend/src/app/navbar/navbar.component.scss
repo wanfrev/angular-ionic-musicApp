@@ -1,0 +1,55 @@
+.navbar {
+  position: fixed;
+  bottom: 20px; /* Se eleva desde el borde inferior */
+  left: 50%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+  height: 70px; /* Altura de la barra */
+  background: #1e1e2f;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 35px; /* Bordes completamente redondeados */
+  box-shadow: 10px 10px 20px #14141f, -10px -10px 20px #28283f; /* Neumorfismo flotante */
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* Ícono encima del texto */
+  justify-content: center;
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 5px;
+  border-radius: 15px; /* Bordes redondeados para los ítems */
+  background: transparent; /* Fondo transparente */
+  box-shadow: none; /* Sin sombras */
+}
+
+.nav-item.active,
+.nav-item:hover {
+  color: #fff; /* Color blanco para el ítem activo o al pasar el mouse */
+  background: #28283f; /* Fondo ligeramente más oscuro al hacer hover */
+}
+
+svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px; /* Espaciado entre el ícono y el texto */
+  fill: #b3b3b3; /* Color inicial del ícono */
+  transition: fill 0.3s ease;
+}
+
+.nav-item.active svg,
+.nav-item:hover svg {
+  fill: #fff; /* Cambia el color del ícono al pasar el mouse o cuando está activo */
+}
+
+ion-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}

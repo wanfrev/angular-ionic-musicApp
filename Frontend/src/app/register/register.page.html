@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true">
+  <div class="register-container">
+    <div class="register-card">
+      <form (ngSubmit)="register()">
+        <ion-item class="custom-item">
+          <ion-label position="floating">Username</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="username"
+            name="username"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-item class="custom-item">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-item class="custom-item">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <button type="submit" class="btn-register">Register</button>
+      </form>
+
+      <div class="nav-link">
+        <p>Already have an account?</p>
+        <button
+          (click)="navigateToLogin()"
+          class="custom-button"
+        >
+          Log In
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

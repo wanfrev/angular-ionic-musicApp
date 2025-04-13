@@ -1,0 +1,112 @@
+<ion-content id="mainContent">
+  <div class="custom-header">
+    <div class="header-left">
+      <!-- Display username -->
+      <span class="username-display">{{ username }}</span>
+    </div>
+    <div class="header-right">
+      <!-- Logout button -->
+      <button id="logoutButton" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        Log Out
+      </button>
+    </div>
+  </div>
+
+  <!-- Popular Albums Section -->
+  <div class="popular-albums">
+    <h2>Popular Albums and Singles</h2>
+    <div class="carousel">
+      <div class="carousel-item" *ngFor="let album of popularAlbums">
+        <img [src]="album.imageUrl" [alt]="album.name" />
+        <span>{{ album.name }}</span>
+        <small>{{ album.artists }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Songs -->
+  <div class="viewed-tracks" *ngIf="viewedTracks.length > 0">
+    <h2>Recent Songs</h2>
+    <div class="track-grid">
+      <div
+        class="track-item"
+        *ngFor="let track of viewedTracks | slice:0:6"
+        (click)="goToSongDetail(track.id)"
+      >
+        <img class="track-image" [src]="track.imageUrl" [alt]="track.name" />
+        <div class="track-info">
+          <h3>{{ track.name }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎧 Recomendaciones -->
+  <div class="recommended-section" *ngIf="recommendations.length > 0">
+    <h2>Recommended for You</h2>
+    <div class="carousel">
+      <div class="carousel-item" *ngFor="let track of recommendations">
+        <img [src]="track.imageUrl" [alt]="track.name" />
+        <span>{{ track.name }}</span>
+        <small>{{ track.artists }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🆕 Nuevos Lanzamientos -->
+  <div class="new-releases-section" *ngIf="newReleases.length > 0">
+    <h2>New Releases</h2>
+    <div class="carousel">
+      <div class="carousel-item" *ngFor="let release of newReleases">
+        <img [src]="release.imageUrl" [alt]="release.name" />
+        <span>{{ release.name }}</span>
+        <small>{{ release.artists }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔥 Playlists Destacadas -->
+  <div class="featured-playlists-section" *ngIf="featuredPlaylists.length > 0">
+    <h2>Featured Playlists</h2>
+    <div class="carousel">
+      <div class="carousel-item" *ngFor="let playlist of featuredPlaylists">
+        <img [src]="playlist.imageUrl" [alt]="playlist.name" />
+        <span>{{ playlist.name }}</span>
+        <small>{{ playlist.description }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Playlists -->
+  <div *ngIf="playlists.length > 0">
+    <h2>My Playlists</h2>
+    <ion-list>
+      <ion-item *ngFor="let playlist of playlists">
+        <ion-label>
+          <h2>{{ playlist.name }}</h2>
+          <p>{{ playlist.songs.length }} songs</p>
+        </ion-label>
+        <button
+          slot="end"
+          class="three-dots-btn"
+          (click)="openOptions(playlist)"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            style="fill: rgb(255, 255, 255)"
+          >
+            <path
+              d="M12,16a2,2,0,1,1-2,2A2,2,0,0,1,12,16ZM10,6a2,2,0,1,0,2-2A2,2,0,0,0,10,6Zm0,6a2,2,0,1,0,2-2A2,2,0,0,0,10,12Z"
+            />
+          </svg>
+        </button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<app-navbar></app-navbar>

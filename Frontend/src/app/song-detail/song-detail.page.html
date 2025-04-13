@@ -1,0 +1,50 @@
+<ion-content>
+  <div
+    class="song-detail"
+    [ngStyle]="{ 'background': 'linear-gradient(to bottom, ' + backgroundColor + ', black)' }"
+  >
+    <!-- Imagen del álbum -->
+    <img
+      #albumImage
+      [src]="song?.album.images[0]?.url"
+      alt="Portada del álbum"
+      class="album-image"
+    />
+
+    <!-- Información de la canción -->
+    <div class="song-info">
+      <h2>{{ song?.name }}</h2>
+      <p class="artist-names">{{ artistNames }}</p>
+      <p class="album-info">
+        {{ song?.album.album_type | titlecase }} • {{ song?.album.release_date }}
+      </p>
+      <p class="duration">{{ formatDuration(song?.duration_ms) }}</p>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+      <button class="btn-action">➕ Agregar</button>
+      <button class="btn-action">⬇ Descargar</button>
+      <button class="btn-action">⋮ Más</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Reproductor de vista previa -->
+    <ng-container *ngIf="song?.preview_url; else noPreview">
+      <audio #audioPlayer controls>
+        <source [src]="song.preview_url" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+
+      <div class="button-container">
+        <button class="btn-play" (click)="playPreview()">▶ Reproducir</button>
+        <button class="btn-pause" (click)="pausePreview()">⏸ Pausar</button>
+      </div>
+    </ng-container>
+
+    <ng-template #noPreview>
+      <p><em>Esta canción no tiene una vista previa disponible.</em></p>
+    </ng-template>
+  </div>
+</ion-content>
