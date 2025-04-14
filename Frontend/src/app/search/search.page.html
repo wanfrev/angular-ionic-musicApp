@@ -9,6 +9,27 @@
     />
   </div>
 
+  <div class="filters">
+    <div class="filter-group">
+      <label for="duration">Duración:</label>
+      <select id="duration" [(ngModel)]="selectedDuration" (change)="applyFilters()">
+        <option value="">Todas</option>
+        <option value="short">Corta (menos de 3 min)</option>
+        <option value="medium">Media (3-5 min)</option>
+        <option value="long">Larga (más de 5 min)</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="sort">Ordenar por:</label>
+      <select id="sort" [(ngModel)]="selectedSort" (change)="applyFilters()">
+        <option value="">Sin orden</option>
+        <option value="asc">Título (A-Z)</option>
+        <option value="desc">Título (Z-A)</option>
+      </select>
+    </div>
+  </div>
+
   <!-- Resultados de Artistas -->
   <div *ngIf="artistResults.length > 0">
     <h2>Artistas</h2>
@@ -50,4 +71,5 @@
 </div>
 </ion-content>
 
+<app-audio-player></app-audio-player>
 <app-navbar></app-navbar>

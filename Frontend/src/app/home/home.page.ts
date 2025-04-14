@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 import { MusicService } from '../services/music.service';
 import { TrackService } from '../services/track.service';
 import {
@@ -10,6 +11,7 @@ import {
   ActionSheetController,
 } from '@ionic/angular';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AudioPlayerComponent } from '../audio-player/audio-player.component';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   standalone: true,
   imports: [
     NavbarComponent,
+    AudioPlayerComponent,
     CommonModule,
     IonicModule, // Esto incluye todos los componentes de Ionic
   ],
@@ -120,6 +123,10 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   loadRecommendations() {
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     this.musicService.getRecommendations().subscribe({
       next: (data) => {
         this.recommendations = data;
@@ -132,6 +139,10 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   loadNewReleases() {
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     this.musicService.getNewReleases().subscribe({
       next: (data) => {
         this.newReleases = data;
@@ -144,6 +155,10 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   loadFeaturedPlaylists() {
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     this.musicService.getFeaturedPlaylists().subscribe({
       next: (data) => {
         this.featuredPlaylists = data;

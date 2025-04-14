@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MusicService {
-  private apiUrl = 'https://spotify-angular2-yoli.vercel.app/api/music'; // URL del backend
+  private apiUrl = 'https://angular-ionic-music-app.vercel.app/api/music'; // URL del backend
   private playlistCreatedSubject = new BehaviorSubject<any>(null); // Emisor de eventos para playlists
   playlistCreated$ = this.playlistCreatedSubject.asObservable(); // Observable para escuchar eventos
 

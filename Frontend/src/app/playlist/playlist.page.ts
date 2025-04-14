@@ -5,13 +5,14 @@ import { MusicService } from '../services/music.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AudioPlayerComponent } from '../audio-player/audio-player.component';
 
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.page.html',
   styleUrls: ['./playlist.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, IonicModule, NavbarComponent, AudioPlayerComponent],
 })
 export class PlaylistPage implements OnInit {
   playlistName: string = '';
@@ -29,14 +30,14 @@ export class PlaylistPage implements OnInit {
     // Obtener los parámetros de la URL
     this.route.queryParams.subscribe((params) => {
       this.playlistId = params['playlistId'] || null;
-  
+
       // Solo asignar el nombre de la playlist si no está definido
       if (!this.playlistName) {
         this.playlistName = params['playlistName'] || 'Nueva Playlist';
       }
-  
+
       this.isEditMode = !!this.playlistId; // Si hay un ID, estamos en modo edición
-  
+
       // Si se pasa una canción desde la búsqueda, agregarla a la playlist
       const trackId = params['trackId'];
       const trackName = params['trackName'];
@@ -44,7 +45,7 @@ export class PlaylistPage implements OnInit {
         this.addSong({ id: trackId, name: trackName });
       }
     });
-  
+
     if (this.isEditMode && this.playlistId) {
       this.loadPlaylist(this.playlistId);
     }
@@ -55,7 +56,7 @@ export class PlaylistPage implements OnInit {
       console.error('El ID de la playlist es inválido.');
       return;
     }
-  
+
     this.musicService.getPlaylists(playlistId).subscribe({
       next: (playlist) => {
         this.playlistName = playlist.name; // Asigna el nombre de la playlist
@@ -73,17 +74,17 @@ export class PlaylistPage implements OnInit {
       console.error('El nombre de la playlist no puede estar vacío.');
       return;
     }
-  
+
     if (this.selectedSongs.length === 0) {
       console.error('No hay canciones en la playlist.');
       return;
     }
-  
+
     const payload = {
       name: this.playlistName,
       songs: this.selectedSongs,
     };
-  
+
     if (this.isEditMode && this.playlistId) {
       // Actualizar playlist existente
       this.musicService.updatePlaylist(this.playlistId, payload).subscribe({

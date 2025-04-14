@@ -7,7 +7,6 @@ const musicRoutes = require('./routes/music');
 const userRoutes = require('./routes/user'); // Asegúrate de que esta línea esté presente
 const { getSpotifyAccessToken } = require('./utils/spotifyUtils');
 
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 

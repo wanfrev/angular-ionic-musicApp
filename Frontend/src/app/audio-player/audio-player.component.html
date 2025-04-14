@@ -1,0 +1,9 @@
+<div *ngIf="currentTrack" class="audio-bar">
+  <img [src]="currentTrack.imageUrl" class="audio-img" />
+  <div class="audio-details">
+    <div class="audio-title">{{ currentTrack.name }}</div>
+    <div class="audio-artist">{{ currentTrack.artists }}</div>
+  </div>
+  <ion-button fill="clear" size="small" (click)="pause()">⏸️</ion-button>
+  <ion-button fill="clear" size="small" (click)="stop()">⏹️</ion-button>
+</div>

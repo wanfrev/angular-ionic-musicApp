@@ -4,6 +4,7 @@ import { MusicService } from '../services/music.service';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { AudioPlayerComponent } from '../audio-player/audio-player.component';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   templateUrl: './playlist-list.page.html',
   styleUrls: ['./playlist-list.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, NavbarComponent], // Importa los módulos necesarios
+  imports: [CommonModule, IonicModule, NavbarComponent, AudioPlayerComponent], // Importa los módulos necesarios
 })
 export class PlaylistListPage implements OnInit {
   playlistId: string | null = null;

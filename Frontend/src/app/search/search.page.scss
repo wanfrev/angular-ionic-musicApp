@@ -147,3 +147,48 @@ h2 {
   box-shadow: 10px 10px 20px #14141f, -10px -10px 20px #28283f; /* Neumorfismo */
 }
 
+.filters {
+  margin: 10px 0;
+  padding: 10px;
+  background: #1e1e2f; /* Fondo oscuro */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f; /* Neumorfismo */
+  display: flex; /* Usamos flexbox */
+  justify-content: space-between; /* Espaciado entre los filtros */
+  align-items: center; /* Alineación vertical */
+  gap: 10px; /* Espaciado entre los elementos */
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; /* Los filtros ocupan el mismo espacio */
+}
+
+.filter-group label {
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+}
+
+.filter-group select {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 5px; /* Reduce el relleno */
+  border-radius: 8px;
+  background: #1e1e2f;
+  color: #fff;
+  border: none;
+  box-shadow: inset 3px 3px 6px #14141f, inset -3px -3px 6px #28283f; /* Neumorfismo interno */
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.filter-group select:hover {
+  box-shadow: 3px 3px 6px #14141f, -3px -3px 6px #28283f; /* Neumorfismo externo */
+}
+
+.filter-group select:focus {
+  box-shadow: inset 3px 3px 6px #14141f, inset -3px -3px 6px #28283f; /* Neumorfismo interno */
+}
