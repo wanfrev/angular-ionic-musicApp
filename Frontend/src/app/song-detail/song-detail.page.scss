@@ -5,6 +5,35 @@ ion-content {
   padding: 15px;
 }
 
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  background: #1e1e2f;
+  box-shadow: 0 5px 10px #14141f, 0 -5px 10px #28283f;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+#menuButton {
+  background: #1e1e2f;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+#menuButton:hover {
+  box-shadow: inset 5px 5px 10px #14141f, inset -5px -5px 10px #28283f;
+}
+
 .song-detail {
   display: flex;
   flex-direction: column;
@@ -15,19 +44,24 @@ ion-content {
 .album-container {
   margin-top: 20px;
   margin-bottom: 20px;
+  background: #1e1e2f;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f;
+  padding: 15px;
 }
 
 .album-image {
   width: 80%;
   max-width: 300px;
   border-radius: 15px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 5px 5px 10px #14141f, inset -5px -5px 10px #28283f;
 }
 
 .song-info h1 {
   font-size: 28px;
   font-weight: bold;
   margin: 10px 0;
+  color: #fff;
 }
 
 .song-info h3 {
@@ -53,10 +87,40 @@ ion-content {
   margin: 20px 0;
 }
 
+.action-button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #1e1e2f;
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+  box-shadow: inset 5px 5px 10px #14141f, inset -5px -5px 10px #28283f;
+  transform: scale(1.05);
+}
+
+.action-button.primary {
+  background: #3a3a4f;
+}
+
+.action-button.secondary {
+  background: #28283f;
+}
+
 .preview-player {
   margin-top: 20px;
   width: 100%;
   max-width: 300px;
+  background: #1e1e2f;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #14141f, -5px -5px 10px #28283f;
+  padding: 10px;
 }
 
 audio {
@@ -67,4 +131,5 @@ audio {
   font-size: 14px;
   color: #ff6b6b;
   margin-top: 20px;
+  text-align: center;
 }

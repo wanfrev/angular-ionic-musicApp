@@ -1,25 +1,34 @@
 <ion-content>
-  <!-- Campo para ingresar el nombre de la playlist -->
-  <ion-item>
-    <ion-label position="floating">Nombre de la Playlist</ion-label>
-    <ion-input [(ngModel)]="playlistName"></ion-input>
-  </ion-item>
+  <!-- Encabezado personalizado -->
+  <div class="custom-header">
+    <button id="menuButton" (click)="goBack()">
+      ⬅️
+    </button>
+    <h1 class="username-display">🎵 Playlist</h1>
+  </div>
 
-  <!-- Botón para agregar más canciones -->
-  <ion-button expand="block" (click)="openAddSongModal()">Agregar Canción</ion-button>
+  <!-- Contenedor principal -->
+  <div class="playlist-container">
+    <!-- Campo para ingresar el nombre de la playlist -->
+    <div class="input-container">
+      <label for="playlistName">Nombre de la Playlist</label>
+      <input id="playlistName" type="text" [(ngModel)]="playlistName" placeholder="Nueva Playlist" />
+    </div>
 
-  <!-- Lista de canciones seleccionadas -->
-  <ion-list>
-    <ion-item *ngFor="let song of selectedSongs">
-      <ion-label>
-        <h2>{{ song.name }}</h2>
-      </ion-label>
-      <ion-button slot="end" color="danger" (click)="removeSong(song.id)">Eliminar</ion-button>
-    </ion-item>
-  </ion-list>
+    <!-- Botón para agregar más canciones -->
+    <div class="button-container">
+      <button class="action-button primary" (click)="openAddSongModal()">Agregar Canción</button>
+      <button class="action-button primary" (click)="savePlaylist()">Guardar Playlist</button>
+    </div>
 
-  <!-- Botón para guardar la playlist -->
-  <ion-button expand="block" color="primary" (click)="savePlaylist()">Guardar Playlist</ion-button>
+    <!-- Lista de canciones seleccionadas -->
+    <ul class="song-list">
+      <li *ngFor="let song of selectedSongs" class="song-item">
+        <span>{{ song.name }}</span>
+        <button class="action-button secondary" (click)="removeSong(song.id)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
 </ion-content>
 
 <app-audio-player></app-audio-player>

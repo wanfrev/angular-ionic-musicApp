@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; // Importa Router
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MusicService } from '../services/music.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AudioPlayerComponent } from '../audio-player/audio-player.component';
+import { Location } from '@angular/common'; // Importación de Location
 
 @Component({
   selector: 'app-playlist',
@@ -22,23 +23,21 @@ export class PlaylistPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router, // Inyecta Router
-    private musicService: MusicService
+    private router: Router,
+    private musicService: MusicService,
+    private location: Location
   ) {}
 
   ngOnInit() {
-    // Obtener los parámetros de la URL
     this.route.queryParams.subscribe((params) => {
       this.playlistId = params['playlistId'] || null;
 
-      // Solo asignar el nombre de la playlist si no está definido
       if (!this.playlistName) {
         this.playlistName = params['playlistName'] || 'Nueva Playlist';
       }
 
-      this.isEditMode = !!this.playlistId; // Si hay un ID, estamos en modo edición
+      this.isEditMode = !!this.playlistId;
 
-      // Si se pasa una canción desde la búsqueda, agregarla a la playlist
       const trackId = params['trackId'];
       const trackName = params['trackName'];
       if (trackId && trackName) {
@@ -59,8 +58,8 @@ export class PlaylistPage implements OnInit {
 
     this.musicService.getPlaylists(playlistId).subscribe({
       next: (playlist) => {
-        this.playlistName = playlist.name; // Asigna el nombre de la playlist
-        this.selectedSongs = playlist.songs; // Carga las canciones en la lista
+        this.playlistName = playlist.name;
+        this.selectedSongs = playlist.songs;
         console.log('Playlist cargada:', this.selectedSongs);
       },
       error: (error) => {
@@ -86,23 +85,21 @@ export class PlaylistPage implements OnInit {
     };
 
     if (this.isEditMode && this.playlistId) {
-      // Actualizar playlist existente
       this.musicService.updatePlaylist(this.playlistId, payload).subscribe({
         next: (response) => {
           console.log('Playlist actualizada:', response);
-          this.router.navigate(['/home']); // Redirige al home después de guardar
+          this.router.navigate(['/home']);
         },
         error: (error) => {
           console.error('Error al actualizar la playlist:', error);
         },
       });
     } else {
-      // Crear nueva playlist
       this.musicService.createPlaylist(this.playlistName, this.selectedSongs).subscribe({
         next: (response) => {
           console.log('Playlist creada:', response);
-          this.musicService.notifyPlaylistCreated(response); // Notifica la creación
-          this.router.navigate(['/home']); // Redirige al home después de guardar
+          this.musicService.notifyPlaylistCreated(response);
+          this.router.navigate(['/home']);
         },
         error: (error) => {
           console.error('Error al crear la playlist:', error);
@@ -112,7 +109,6 @@ export class PlaylistPage implements OnInit {
   }
 
   addSong(song: { id: string; name: string }) {
-    // Verifica si la canción ya está en la lista antes de agregarla
     if (!this.selectedSongs.some((s) => s.id === song.id)) {
       this.selectedSongs.push(song);
       console.log('Canción agregada:', song);
@@ -127,11 +123,15 @@ export class PlaylistPage implements OnInit {
   }
 
   openAddSongModal() {
-    // Redirige a la página de búsqueda con parámetros
     this.router.navigate(['/search'], {
       queryParams: {
         playlistId: this.playlistId,
       },
     });
+  }
+
+
+  goBack() {
+    this.location.back();
   }
 }

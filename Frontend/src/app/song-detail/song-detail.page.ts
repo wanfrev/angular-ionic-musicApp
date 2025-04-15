@@ -1,18 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MusicService } from '../services/music.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonTitle,
-  IonImg,
-} from '@ionic/angular/standalone';
+import { Location } from '@angular/common'; // Para navegación hacia atrás
+import { IonicModule } from '@ionic/angular';
 import ColorThief from 'color-thief-browser';
 
 @Component({
@@ -23,20 +15,10 @@ import ColorThief from 'color-thief-browser';
   imports: [
     CommonModule,
     FormsModule,
-    IonContent,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonButton,
-    IonIcon,
-    IonTitle,
-    IonImg,
+    IonicModule, // Incluye todos los componentes de Ionic
   ],
 })
 export class SongDetailPage implements OnInit {
-addToPlaylist() {
-throw new Error('Method not implemented.');
-}
   song: any; // Detalles de la canción
   artistNames: string = ''; // Nombres de los artistas como cadena
   backgroundColor: string = 'black'; // Color de fondo por defecto
@@ -46,8 +28,8 @@ throw new Error('Method not implemented.');
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private musicService: MusicService
+    private musicService: MusicService,
+    private location: Location // Para manejar la navegación hacia atrás
   ) {}
 
   ngOnInit() {
@@ -100,6 +82,10 @@ throw new Error('Method not implemented.');
   }
 
   goBack() {
-    this.router.navigate(['/search']); // Navega de regreso a la página de búsqueda
+    this.location.back(); // Navega hacia la página anterior
+  }
+
+  addToPlaylist() {
+    console.log('Agregar a Playlist'); // Implementa la lógica para agregar a la playlist
   }
 }

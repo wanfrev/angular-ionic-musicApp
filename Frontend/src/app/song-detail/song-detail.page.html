@@ -1,15 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="goBack()">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>🎵 Canción</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <!-- Encabezado personalizado -->
+  <div class="custom-header">
+    <button id="menuButton" (click)="goBack()">
+      ⬅️
+    </button>
+    <h1 class="username-display">🎵 Canción</h1>
+  </div>
+
   <div class="song-detail">
     <!-- Imagen del álbum -->
     <div class="album-container">
@@ -36,12 +33,12 @@
 
     <!-- Botones de acción -->
     <div class="action-buttons">
-      <ion-button expand="block" color="primary" (click)="addToPlaylist()">
+      <button class="action-button primary" (click)="addToPlaylist()">
         ➕ Agregar a Playlist
-      </ion-button>
-      <ion-button expand="block" color="secondary">
-        ⬇ Descargar
-      </ion-button>
+      </button>
+      <button class="action-button secondary">
+        ⬇️ Descargar
+      </button>
     </div>
 
     <!-- Reproductor de vista previa -->
