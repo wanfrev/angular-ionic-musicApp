@@ -1,50 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>🎵 Canción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <div
-    class="song-detail"
-    [ngStyle]="{ 'background': 'linear-gradient(to bottom, ' + backgroundColor + ', black)' }"
-  >
+  <div class="song-detail">
     <!-- Imagen del álbum -->
-    <img
-      #albumImage
-      [src]="song?.album.images[0]?.url"
-      alt="Portada del álbum"
-      class="album-image"
-    />
+    <div class="album-container">
+      <img
+        #albumImage
+        [src]="song?.album.images[0]?.url"
+        alt="Portada del álbum"
+        class="album-image"
+      />
+    </div>
 
     <!-- Información de la canción -->
     <div class="song-info">
-      <h2>{{ song?.name }}</h2>
-      <p class="artist-names">{{ artistNames }}</p>
+      <h1>{{ song?.name }}</h1>
+      <h3>{{ artistNames }}</h3>
       <p class="album-info">
-        {{ song?.album.album_type | titlecase }} • {{ song?.album.release_date }}
+        <strong>Álbum:</strong> {{ song?.album.name }} <br />
+        <strong>Lanzamiento:</strong> {{ song?.album.release_date }}
       </p>
-      <p class="duration">{{ formatDuration(song?.duration_ms) }}</p>
+      <p class="duration">
+        <strong>Duración:</strong> {{ formatDuration(song?.duration_ms) }}
+      </p>
     </div>
 
     <!-- Botones de acción -->
     <div class="action-buttons">
-      <button class="btn-action">➕ Agregar</button>
-      <button class="btn-action">⬇ Descargar</button>
-      <button class="btn-action">⋮ Más</button>
+      <ion-button expand="block" color="primary" (click)="addToPlaylist()">
+        ➕ Agregar a Playlist
+      </ion-button>
+      <ion-button expand="block" color="secondary">
+        ⬇ Descargar
+      </ion-button>
     </div>
 
-    <div class="divider"></div>
-
     <!-- Reproductor de vista previa -->
-    <ng-container *ngIf="song?.preview_url; else noPreview">
+    <div class="preview-player" *ngIf="song?.preview_url; else noPreview">
       <audio #audioPlayer controls>
         <source [src]="song.preview_url" type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio.
       </audio>
-
-      <div class="button-container">
-        <button class="btn-play" (click)="playPreview()">▶ Reproducir</button>
-        <button class="btn-pause" (click)="pausePreview()">⏸ Pausar</button>
-      </div>
-    </ng-container>
+    </div>
 
     <ng-template #noPreview>
-      <p><em>Esta canción no tiene una vista previa disponible.</em></p>
+      <p class="no-preview">No hay vista previa disponible para esta canción.</p>
     </ng-template>
   </div>
 </ion-content>

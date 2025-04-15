@@ -1,9 +1,18 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MusicService } from '../services/music.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonImg } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonButton,
+  IonIcon,
+  IonTitle,
+  IonImg,
+} from '@ionic/angular/standalone';
 import ColorThief from 'color-thief-browser';
 
 @Component({
@@ -11,19 +20,33 @@ import ColorThief from 'color-thief-browser';
   templateUrl: './song-detail.page.html',
   styleUrls: ['./song-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonContent,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    IonTitle,
+    IonImg,
+  ],
 })
 export class SongDetailPage implements OnInit {
+addToPlaylist() {
+throw new Error('Method not implemented.');
+}
   song: any; // Detalles de la canción
   artistNames: string = ''; // Nombres de los artistas como cadena
   backgroundColor: string = 'black'; // Color de fondo por defecto
 
   @ViewChild('albumImage', { static: false }) albumImage!: ElementRef; // Referencia a la imagen del álbum
   @ViewChild('audioPlayer', { static: false }) audioPlayer!: ElementRef;
-artist: any;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private musicService: MusicService
   ) {}
 
@@ -40,11 +63,8 @@ artist: any;
     this.musicService.getSongById(songId).subscribe((response) => {
       this.song = response;
 
-      // Log para verificar la respuesta completa
-
-      // Verifica si 'artists' es un arreglo de cadenas
       if (this.song.artists && Array.isArray(this.song.artists)) {
-        this.artistNames = this.song.artists.join(', '); // Une los nombres de los artistas
+        this.artistNames = this.song.artists.join(', ');
       } else {
         this.artistNames = 'Artista desconocido';
       }
@@ -56,7 +76,7 @@ artist: any;
       const img = this.albumImage.nativeElement as HTMLImageElement;
 
       const colorThief = new ColorThief();
-      const dominantColor = colorThief.getColor(img); // Obtén el color predominante
+      const dominantColor = colorThief.getColor(img);
       this.backgroundColor = `rgb(${dominantColor[0]}, ${dominantColor[1]}, ${dominantColor[2]})`;
     } else {
       console.error('La referencia a la imagen no está disponible.');
@@ -77,5 +97,9 @@ artist: any;
   pausePreview() {
     const audio: HTMLAudioElement = this.audioPlayer.nativeElement;
     audio.pause();
+  }
+
+  goBack() {
+    this.router.navigate(['/search']); // Navega de regreso a la página de búsqueda
   }
 }

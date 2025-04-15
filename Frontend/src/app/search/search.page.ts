@@ -105,6 +105,10 @@ export class SearchPage {
     });
   }
 
+  goToSongDetail(trackId: string) {
+    this.router.navigate(['/song-detail', trackId]); // Redirige a la página de detalles con el ID de la canción
+  }
+
   closeModal() {
     this.modalController.dismiss();
   }
