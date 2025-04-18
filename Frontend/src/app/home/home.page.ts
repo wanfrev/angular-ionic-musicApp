@@ -51,9 +51,6 @@ export class HomePage implements OnInit, OnDestroy {
     this.loadViewedTracks();
     this.loadPopularAlbums();
     this.loadPlaylists();
-    this.loadRecommendations();
-    this.loadNewReleases();
-    this.loadFeaturedPlaylists();
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.username = currentUser.username || 'Usuario';
@@ -118,51 +115,6 @@ export class HomePage implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error al cargar los álbumes populares:', error);
-      },
-    });
-  }
-
-  loadRecommendations() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.musicService.getRecommendations().subscribe({
-      next: (data) => {
-        this.recommendations = data;
-        console.log('🎧 Recomendaciones:', data);
-      },
-      error: (err) => {
-        console.error('Error cargando recomendaciones:', err);
-      },
-    });
-  }
-
-  loadNewReleases() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.musicService.getNewReleases().subscribe({
-      next: (data) => {
-        this.newReleases = data;
-        console.log('🆕 Nuevos lanzamientos:', data);
-      },
-      error: (err) => {
-        console.error('Error cargando nuevos lanzamientos:', err);
-      },
-    });
-  }
-
-  loadFeaturedPlaylists() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.musicService.getFeaturedPlaylists().subscribe({
-      next: (data) => {
-        this.featuredPlaylists = data;
-        console.log('🔥 Playlists destacadas:', data);
-      },
-      error: (err) => {
-        console.error('Error cargando playlists destacadas:', err);
       },
     });
   }
