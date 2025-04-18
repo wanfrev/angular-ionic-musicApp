@@ -49,9 +49,9 @@ export class PlaylistModalComponent implements OnInit {
     const songData = {
       id: this.trackId,
       name: this.trackName,
-      imageUrl: this.trackImageUrl,
+      imageUrl: this.trackImageUrl, // Asegúrate de incluir la imagen aquí
     };
-
+  
     this.musicService.addSongToPlaylist(playlist._id, songData).subscribe({
       next: (response) => {
         console.log('Canción agregada a la playlist:', response);

@@ -331,7 +331,7 @@ router.post('/playlists/:playlistId/songs', authMiddleware, async (req, res) => 
 
     const completeSong = {
       ...song,
-      imageUrl: song.imageUrl || 'assets/default-song.png',
+      imageUrl: song.imageUrl || 'assets/default-song.png', // Asegúrate de no sobrescribir la imagen si ya existe
     };
 
     playlist.songs.push(completeSong);
