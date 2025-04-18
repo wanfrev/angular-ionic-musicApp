@@ -32,6 +32,17 @@
           ></ion-input>
         </ion-item>
 
+        <!-- Campo para confirmar la contraseña -->
+        <ion-item class="custom-item">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            required
+          ></ion-input>
+        </ion-item>
+
         <button type="submit" class="btn-register">Register</button>
       </form>
 
