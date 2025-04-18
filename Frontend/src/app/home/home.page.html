@@ -39,42 +39,6 @@
     </div>
   </div>
 
-  <!-- 🎧 Recomendaciones -->
-  <div class="recommended-section" *ngIf="recommendations.length > 0">
-    <h2>Recommended for You</h2>
-    <div class="carousel">
-      <div class="carousel-item" *ngFor="let track of recommendations">
-        <img [src]="track.imageUrl" [alt]="track.name" />
-        <span>{{ track.name }}</span>
-        <small>{{ track.artists }}</small>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🆕 Nuevos Lanzamientos -->
-  <div class="new-releases-section" *ngIf="newReleases.length > 0">
-    <h2>New Releases</h2>
-    <div class="carousel">
-      <div class="carousel-item" *ngFor="let release of newReleases">
-        <img [src]="release.imageUrl" [alt]="release.name" />
-        <span>{{ release.name }}</span>
-        <small>{{ release.artists }}</small>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🔥 Playlists Destacadas -->
-  <div class="featured-playlists-section" *ngIf="featuredPlaylists.length > 0">
-    <h2>Featured Playlists</h2>
-    <div class="carousel">
-      <div class="carousel-item" *ngFor="let playlist of featuredPlaylists">
-        <img [src]="playlist.imageUrl" [alt]="playlist.name" />
-        <span>{{ playlist.name }}</span>
-        <small>{{ playlist.description }}</small>
-      </div>
-    </div>
-  </div>
-
   <!-- Playlists -->
   <div *ngIf="playlists.length > 0">
     <h2>My Playlists</h2>
